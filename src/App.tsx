@@ -21,9 +21,7 @@ function App(): JSX.Element {
 
   useEffect(() => {
     const parsed = parse(search);
-    if (parsed.search) {
-      dispatch(fetchAndFilterData(parsed.search));
-    }
+    dispatch(fetchAndFilterData(parsed.search || ''));
   }, []);
 
   return (
