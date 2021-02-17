@@ -19,7 +19,7 @@ const ListSection: FC = () => {
   const { data, error, loading } = useSelector(({ dataStore }: RootState) => dataStore);
 
   if (loading) return <Loading />;
-  if (error) return <NotificationTitle text={'Some error'} />;
+  if (error) return <NotificationTitle text={'Error when fetch the data'} />;
   if (!data.length) return <NotificationTitle text={'No data find'} />;
 
   return (
