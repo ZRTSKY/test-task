@@ -23,12 +23,8 @@ export const sortValues = (value: SortVariants): ThunkResult => (dispatch, getSt
     dataStore: { data, ...other },
   }: RootState = getState();
 
-  const sortedValues = () => data.sort((a, b) => a.localeCompare(b));
-  const combinedData = (reverse: boolean) =>
-    dispatch(SetData({ ...other, data: reverse ? sortedValues().reverse() : sortedValues() }));
+  const sortedValues = (isReverse: boolean): string[] =>
+    data.sort((a, b) => (isReverse ? a.localeCompare(b) : b.localeCompare(a)));
 
-  if (value === 'A-Z') return combinedData(false);
-  if (value === 'Z-A') return combinedData(true);
-
-  return combinedData(false);
+  dispatch(SetData({ ...other, data: sortedValues(value === 'A-Z') }));
 };
